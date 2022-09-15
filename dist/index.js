@@ -21,6 +21,8 @@ const waitForUrl = async ({
   maxTimeout,
   checkIntervalInMilliseconds,
   vercelPassword,
+  vercelBaseAuth,
+  vercelBaseAuthPass,
   path,
 }) => {
   const iterations = calculateIterations(
@@ -43,6 +45,16 @@ const waitForUrl = async ({
         };
 
         core.setOutput('vercel_jwt', jwt);
+      }
+
+      if (vercelBaseAuth) {
+        const baseauth = Buffer.from(vercelBaseAuth + ":" + vercelBaseAuthPass).toString('base64')
+
+        headers = {
+          Authorization: `Basic ${baseauth}`,
+        };
+
+        core.setOutput('base_auth', baseauth);
       }
 
       let checkUri = new URL(path, url);
@@ -366,6 +378,8 @@ const run = async () => {
       maxTimeout: MAX_TIMEOUT,
       checkIntervalInMilliseconds: CHECK_INTERVAL_IN_MS,
       vercelPassword: VERCEL_PASSWORD,
+      vercelBaseAuth: BASE_AUTH_USER,
+      vercelBaseAuthPass: BASE_AUTH_PASS,
       path: PATH,
     });
   } catch (error) {

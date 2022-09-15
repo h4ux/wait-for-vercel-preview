@@ -23,6 +23,12 @@ inputs:
   vercel_password:
     description: 'Vercel password protection secret'
     required: false
+  base_auth_user:
+    description: 'Base auth user name'
+    required: false
+  base_auth_pass:
+    description: 'Base auth password'
+    required: false
   path:
     description: 'The path to check. Defaults to the index of the domain'
     default: '/'

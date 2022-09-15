@@ -15,6 +15,8 @@ const waitForUrl = async ({
   maxTimeout,
   checkIntervalInMilliseconds,
   vercelPassword,
+  vercelBaseAuth,
+  vercelBaseAuthPass,
   path,
 }) => {
   const iterations = calculateIterations(
@@ -37,6 +39,16 @@ const waitForUrl = async ({
         };
 
         core.setOutput('vercel_jwt', jwt);
+      }
+
+      if (vercelBaseAuth) {
+        const baseauth = Buffer.from(vercelBaseAuth + ":" + vercelBaseAuthPass).toString('base64')
+
+        headers = {
+          Authorization: `Basic ${baseauth}`,
+        };
+
+        core.setOutput('base_auth', baseauth);
       }
 
       let checkUri = new URL(path, url);
@@ -280,6 +292,9 @@ const run = async () => {
     // Inputs
     const GITHUB_TOKEN = core.getInput('token', { required: true });
     const VERCEL_PASSWORD = core.getInput('vercel_password');
+    const BASE_AUTH_USER = core.getInput('base_auth_user');
+    const BASE_AUTH_PASS = core.getInput('base_auth_pass');
+
     const ENVIRONMENT = core.getInput('environment');
     const MAX_TIMEOUT = Number(core.getInput('max_timeout')) || 60;
     const ALLOW_INACTIVE = Boolean(core.getInput('allow_inactive')) || false;
@@ -367,6 +382,8 @@ const run = async () => {
       maxTimeout: MAX_TIMEOUT,
       checkIntervalInMilliseconds: CHECK_INTERVAL_IN_MS,
       vercelPassword: VERCEL_PASSWORD,
+      vercelBaseAuth: BASE_AUTH_USER,
+      vercelBaseAuthPass: BASE_AUTH_PASS,
       path: PATH,
     });
   } catch (error) {
