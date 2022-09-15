@@ -295,8 +295,8 @@ const run = async () => {
     // Inputs
     const GITHUB_TOKEN = core.getInput('token', { required: true });
     const VERCEL_PASSWORD = core.getInput('vercel_password');
-    const BASE_AUTH_USER = core.getInput('base_auth_user');
-    const BASE_AUTH_PASS = core.getInput('base_auth_pass');
+    const BASE_AUTHUSER = core.getInput('base_authuser');
+    const BASE_AUTHPASS = core.getInput('base_authpass');
     const ENVIRONMENT = core.getInput('environment');
     const MAX_TIMEOUT = Number(core.getInput('max_timeout')) || 60;
     const ALLOW_INACTIVE = Boolean(core.getInput('allow_inactive')) || false;
@@ -384,8 +384,8 @@ const run = async () => {
       maxTimeout: MAX_TIMEOUT,
       checkIntervalInMilliseconds: CHECK_INTERVAL_IN_MS,
       vercelPassword: VERCEL_PASSWORD,
-      vercelBaseAuth: BASE_AUTH_USER,
-      vercelBaseAuthPass: BASE_AUTH_PASS,
+      vercelBaseAuth: BASE_AUTHUSER,
+      vercelBaseAuthPass: BASE_AUTHPASS,
       path: PATH,
     });
   } catch (error) {

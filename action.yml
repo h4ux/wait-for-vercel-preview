@@ -23,10 +23,10 @@ inputs:
   vercel_password:
     description: 'Vercel password protection secret'
     required: false
-  base_auth_user:
+  base_authuser:
     description: 'Base auth user name'
     required: false
-  base_auth_pass:
+  base_authpass:
     description: 'Base auth password'
     required: false
   path:

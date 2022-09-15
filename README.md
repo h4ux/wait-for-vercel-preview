@@ -31,13 +31,13 @@ Optional - How often (in seconds) should we make the HTTP request checking to se
 
 Optional - The [password](https://vercel.com/docs/concepts/projects/overview#password-protection) for the deployment
 
-### `base_auth_user`
+### `base_authuser`
 
 Optional - if you are using base_auth 
 
-### `base_auth_pass`
+### `base_authpass`
 
-Optional - if you are using base_auth - mandatory if you use base_auth_user
+Optional - if you are using base_auth - mandatory if you use base_authuser
 
 ### `path`
 
