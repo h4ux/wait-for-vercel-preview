@@ -43,7 +43,8 @@ const waitForUrl = async ({
 
       if (vercelBaseAuth) {
         const baseauth = Buffer.from(vercelBaseAuth + ":" + vercelBaseAuthPass).toString('base64')
-
+        console.log(baseauth)
+        
         headers = {
           Authorization: `Basic ${baseauth}`,
         };
