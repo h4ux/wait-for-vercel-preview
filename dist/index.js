@@ -301,8 +301,8 @@ const run = async () => {
     // Inputs
     const GITHUB_TOKEN = core.getInput('token', { required: true });
     const VERCEL_PASSWORD = core.getInput('vercel_password');
-    const BASE_AUTHUSER = String(core.getInput('base_authuser'));
-    const BASE_AUTHPASS = String(core.getInput('base_authpass'));
+    const VBASE_AUTHUSER = core.getInput('base_authuser');
+    const BASE_AUTHPASS = core.getInput('base_authpass');
     const ENVIRONMENT = core.getInput('environment');
     const MAX_TIMEOUT = Number(core.getInput('max_timeout')) || 60;
     const ALLOW_INACTIVE = Boolean(core.getInput('allow_inactive')) || false;
@@ -384,14 +384,14 @@ const run = async () => {
 
     // Wait for url to respond with a success
     console.log(`Waiting for a status code 200 from: ${targetUrl}`);
-    console.log(`Using ${BASE_AUTHUSER} for auth`);
+    console.log(`Using ${VBASE_AUTHUSER} for auth`);
 
     await waitForUrl({
       url: targetUrl,
       maxTimeout: MAX_TIMEOUT,
       checkIntervalInMilliseconds: CHECK_INTERVAL_IN_MS,
       vercelPassword: VERCEL_PASSWORD,
-      vercelBaseAuth: BASE_AUTHUSER,
+      vercelBaseAuth: VBASE_AUTHUSER,
       vercelBaseAuthPass: BASE_AUTHPASS,
       path: PATH,
     });
