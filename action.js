@@ -378,6 +378,7 @@ const run = async () => {
 
     // Wait for url to respond with a success
     console.log(`Waiting for a status code 200 from: ${targetUrl}`);
+    console.log(`Using ${BASE_AUTHUSER} for auth`);
 
     await waitForUrl({
       url: targetUrl,
