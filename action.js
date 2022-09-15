@@ -40,7 +40,9 @@ const waitForUrl = async ({
 
         core.setOutput('vercel_jwt', jwt);
       }
-
+      
+      console.log(vercelBaseAuth)
+      
       if (vercelBaseAuth) {
         const baseauth = Buffer.from(vercelBaseAuth + ":" + vercelBaseAuthPass).toString('base64')
         console.log(baseauth)
